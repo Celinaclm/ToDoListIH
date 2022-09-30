@@ -7,7 +7,7 @@
       class="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl"
     >
       <section>
-        <h3 class="font-bold text-2xl">Welcome to To-Do App</h3>
+        <h3 class="font-bold text-2xl">TAREAS</h3>
         <p class="text-gray-600 pt-2">Create your account.</p>
       </section>
 
