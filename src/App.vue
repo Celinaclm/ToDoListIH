@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav v-if="user !== null">
     <router-link to="/">Home</router-link> |
     <router-link to="/auth">Sign Up/In</router-link>
   </nav>
@@ -20,7 +20,7 @@ export default {
   },
   async created() {
     try {
-      await userStore.fetchUser();
+      await this.fetchUser();
       if (!this.user) {
         this.$router.push({ path: '/auth' });
       } else {
