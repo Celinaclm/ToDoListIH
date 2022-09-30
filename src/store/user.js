@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
-import supabase from '../supabase/index';
+import supabase from '../supabase';
 
-export default defineStore('user', {
+export const useUserStore = defineStore('user', {
   state: () => ({
     user: null,
   }),
@@ -19,15 +19,27 @@ export default defineStore('user', {
       if (error) throw error;
       if (user) this.user = user;
     },
-  },
-
-  persist: {
-    enabled: true,
-    strategies: [
-      {
-        key: 'user',
-        storage: localStorage,
-      },
-    ],
+    async singIn(email, password) {
+      const { error } = await supabase.auth.signIn({
+        email,
+        password,
+      });
+      if (error) throw error;
+    },
+    async logOut() {
+      await supabase.auth.signOut();
+    },
+    async setUser(session) {
+      this.user = session ? session.user : null;
+    },
+    persist: {
+      enabled: true,
+      strategies: [
+        {
+          key: 'user',
+          storage: localStorage,
+        },
+      ],
+    },
   },
 });
