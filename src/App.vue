@@ -1,30 +1,36 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <section v-if='appReady' class='min-h-full box-border'>
+    <Navigation />
+    <router-view class='app-main' />
+  </section>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script setup>
+import { ref, onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
+import supabase from './supabase';
+import { useUserStore } from './store/user';
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+const router = useRouter();
+const userStore = useUserStore();
+const { user } = storeToRefs(userStore);
+const appReady = ref(null);
+onMounted(async () => {
+  try {
+    await userStore.fetchUser();
+    if (!user.value) {
+      router.push({ path: '/login' });
+      appReady.value = true;
+    } else {
+      router.push({ path: '/' });
+    }
+  } catch (e) {
+    console.log(e);
+  }
+});
+supabase.auth.onAuthStateChange((event, session) => {
+  userStore.setUser(session);
+  appReady.value = true;
+});
+</script>
