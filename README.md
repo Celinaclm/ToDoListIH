@@ -13,7 +13,7 @@ npm run serve
 ### Compiles and minifies for production
 ```
 npm run build
-https://thunderous-florentine-28dad0.netlify.app
+https://todo-site-ih-2022.netlify.app/login
 
 ### Lints and fixes files
 ```
