@@ -16,5 +16,6 @@ module.exports = {
     'vuejs-accesibility/label-has-for': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'import/prefer-default-export': 'off',
+    "linebreak-style": 0,
   },
 };

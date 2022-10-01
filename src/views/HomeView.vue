@@ -52,9 +52,6 @@ const getData = async () => {
     await taskStore.fetchTasks();
     data.value = tasks.value;
     dataLoaded.value = true;
-    tasks.array.forEach((element) => {
-      console.log('TASKS', element);
-    });
   } catch (error) {
     console.log(error.message);
   }

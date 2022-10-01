@@ -27,7 +27,6 @@ const router = useRouter();
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
 const signout = async () => {
-  console.log('signout');
   await userStore.logOut();
   router.push({ name: 'Login' });
 };
