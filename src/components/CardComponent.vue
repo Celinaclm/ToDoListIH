@@ -51,38 +51,37 @@
           <label
             class="block text-gray-700 text-sm font-bold mb-2 ml-3"
             for="edit"
-            >New title</label
-          >
+            >
           <input
             type="text"
             id="edit"
-            v-model="data[openTask].title"
             maxlength="40"
-            class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-blue-600 transition duration-500 px-3 pb-3"
-          />
+            class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4
+            border-gray-300 focus:border-blue-600 transition duration-500 px-3 pb-3"
+          />New title</label>
         </div>
         <div class="w-full mb-6 pt-3 rounded bg-gray-200">
           <label
             class="block text-gray-700 text-sm font-bold mb-2 ml-3"
             for="todo-text"
-            >State</label
-          >
+            >
           <select
             required
             id="todo-state"
-            v-model="data[openTask].isComplete"
-            class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-blue-600 transition duration-500 px-3 pb-3"
+            class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4
+            border-gray-300 focus:border-blue-600 transition duration-500 px-3 pb-3"
           >
             <option value="select-state" disabled selected hidden>
               Select state
             </option>
             <option value="false">In progress</option>
             <option value="true">Completed</option>
-          </select>
+          </select>State</label>
         </div>
       </div>
       <button
-        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded shadow-lg
+        hover:shadow-xl transition duration-200"
         type="submit"
       >
         Edit
@@ -93,16 +92,13 @@
 
 <script setup>
 import { ref } from 'vue';
-import { storeToRefs } from 'pinia';
-import { useTaskStore } from '../store/task.js';
+import { useTaskStore } from '../store/task';
 
 const props = defineProps(['todo', 'index', 'data', 'getData']);
 console.log(props.data[0]);
 const taskStore = useTaskStore();
-const { tasks } = storeToRefs(taskStore);
 const statusMsg = ref(null);
 const errorMsg = ref(null);
-const isComplete = ref('select-state');
 const openTask = ref('');
 const isOpen = ref(false);
 const deleteData = async () => {

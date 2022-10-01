@@ -2,7 +2,7 @@
   <header class="bg-blue-700 text-white">
     <nav class="py-5 px-4 flex flex-col gap-4 items-center sm:flex-row">
       <div class="flex items-center gap-x-4">
-        <h1 class="text-lg">Tasks App</h1>
+        <h1 class="text-lg">TAREAS</h1>
       </div>
       <ul v-if="user" class="flex flex-1 justify-end gap-x-10">
         <router-link class="cursor-pointer" :to="{ name: 'Home' }"
@@ -11,7 +11,7 @@
         <router-link class="cursor-pointer" :to="{ name: 'Create' }"
           >Create</router-link
         >
-        <li @click="signout" @onClick="signout" class="cursor-pointer">Logout</li>
+        <li @onClick="signout" class="cursor-pointer">Logout</li>
       </ul>
     </nav>
   </header>

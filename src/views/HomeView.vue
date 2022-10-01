@@ -38,6 +38,7 @@ import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '../store/user';
 import { useTaskStore } from '../store/task';
+import Card from '../components/CardComponent.vue';
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -51,6 +52,9 @@ const getData = async () => {
     await taskStore.fetchTasks();
     data.value = tasks.value;
     dataLoaded.value = true;
+    tasks.array.forEach((element) => {
+      console.log('TASKS', element);
+    });
   } catch (error) {
     console.log(error.message);
   }
