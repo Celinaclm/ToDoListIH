@@ -11,6 +11,7 @@ import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 import supabase from './supabase';
 import { useUserStore } from './store/user';
+import Navigation from './components/NavigationComponent.vue';
 
 const router = useRouter();
 const userStore = useUserStore();

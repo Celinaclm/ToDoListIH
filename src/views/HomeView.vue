@@ -6,7 +6,7 @@
     <div v-if="data.length === 0" class="w-full flex flex-col items-center">
       <h1 class="text-2xl">Looks empty here...</h1>
       <router-link
-        class="mt-12 bg-purple-600 hover:bg-purple-700 text-white font-bold p-2 rounded shadow-lg
+        class="mt-12 bg-blue-600 hover:bg-blue-700 text-white font-bold p-2 rounded shadow-lg
         hover:shadow-xl transition duration-200"
         :to="{ name: 'Create' }"
         >Create task</router-link
@@ -38,6 +38,7 @@ import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '../store/user';
 import { useTaskStore } from '../store/task';
+import Card from '../components/CardComponent.vue';
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -51,6 +52,9 @@ const getData = async () => {
     await taskStore.fetchTasks();
     data.value = tasks.value;
     dataLoaded.value = true;
+    tasks.array.forEach((element) => {
+      console.log('TASKS', element);
+    });
   } catch (error) {
     console.log(error.message);
   }

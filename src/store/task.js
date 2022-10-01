@@ -12,6 +12,7 @@ export const useTaskStore = defineStore('tasks', {
         .select('*')
         .order('id', { ascending: false });
       this.tasks = tasks;
+      console.log('FETCHTASK', this.tasks.target);
       if (error) throw error;
     },
     async insertTodo(title, isComplete, userId) {
